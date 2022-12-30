@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const apiRoutes = require("./routes/index");
+const userRoutes = require("./routes/users");
 const logging = require("./middlewares/log");
 const authentication = require("./middlewares/authentication");
 const app = express();
@@ -12,10 +12,10 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// app.use("/api", authentication, apiRoutes);
+app.use("/api", authentication, userRoutes);
 
 mongoose.connect =
-  ("mongodb://127.0.0.1:27017",
+  ("mongodb://127.0.0.1:27017/no-relational-api",
   (err) => {
     if (err) {
       console.log(
